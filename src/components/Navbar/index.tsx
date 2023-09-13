@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Navbar = () => {
   return (
@@ -7,7 +8,7 @@ const Navbar = () => {
       <div
         style={{
           display: "flex",
-          backgroundColor: "red",
+          backgroundColor: "#cf2030",
           justifyContent: "space-around",
           alignItems: "center",
           height: "60px",
@@ -16,8 +17,18 @@ const Navbar = () => {
         }}
       >
         <div>BNI</div>
-        <div>
-          <input></input>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <input
+            style={{ height: "30px", marginRight: "1px", borderRadius: "5px" }}
+          ></input>
+          <Button sx={{ backgroundColor: "black", color: "white" }}>
+            <SearchIcon />
+          </Button>
         </div>
         <div>
           <Button sx={{ color: "white" }}>LOGIN</Button>

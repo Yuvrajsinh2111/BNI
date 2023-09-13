@@ -1,13 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
+import HeroImage from "../../Utils/Images/banner.png";
+import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <div>
-      <img
-        src="https://www.maximusroster.com/public/bni/banner.png"
-        alt="hero-section"
-      />
+    <div style={{ position: "relative" }}>
+      <Image src={HeroImage} alt="hero-section" height={500} />
     </div>
   );
 };

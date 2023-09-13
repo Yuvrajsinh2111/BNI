@@ -1,3 +1,5 @@
+import React from "react";
+import Link from "next/link";
 import {
   Avatar,
   Box,
@@ -6,20 +8,23 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import React from "react";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { Avtar, ContactDetail } from "./style";
 
-const contactDetais = [
-  {
-    icons: "E",
-    value: "test@gmail.com",
-  },
-  {
-    icons: "Ph",
-    value: "9724853887",
-  },
-];
-
-const ConatctCard = () => {
+const ConatctCard = ({
+  companyName,
+  email,
+  facebookLink,
+  industry,
+  instagramLink,
+  profilePicture,
+  linkdInLink,
+  memberName,
+  phoneNumber,
+  websiteLink,
+}: any) => {
   return (
     <>
       <Card
@@ -28,17 +33,17 @@ const ConatctCard = () => {
           marginTop: "20px",
           borderRadius: "20px",
           backgroundColor: "white",
+          color: "black",
+          boxShadow: 6,
+          margin: 2,
+          padding: 2,
+          maxHeight: 400,
+          minWidth: 200,
+          // border: "1px solid red",
         }}
       >
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Avatar
-            src="https://www.maximusroster.com/public/profile_images/ajay_savli1.png"
-            style={{
-              borderRadius: "50%",
-              width: "60%",
-              height: "30%",
-            }}
-          />
+          <Avatar src={profilePicture?.url} className={Avtar} />
         </div>
         <CardContent>
           <Typography
@@ -48,7 +53,7 @@ const ConatctCard = () => {
             justifyContent="center"
             letterSpacing={0}
           >
-            AJAY SALVI
+            {memberName}
           </Typography>
           <Typography
             gutterBottom
@@ -56,7 +61,7 @@ const ConatctCard = () => {
             display="flex"
             justifyContent="center"
           >
-            Enterprise Network Solutions
+            {companyName}
           </Typography>
           <Typography
             gutterBottom
@@ -64,35 +69,27 @@ const ConatctCard = () => {
             display="flex"
             justifyContent="center"
           >
-            Vinay Enterprises
+            {industry}
           </Typography>
-          <Divider sx={{ borderBottomWidth: 4 }} />
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Box>
-              <>
-                {contactDetais &&
-                  contactDetais.map(({ icons, value }: any) => {
-                    return (
-                      <>
-                        <div
-                          style={{
-                            display: "flex",
-                            margin: "5px",
-                          }}
-                        >
-                          {icons} : {value}
-                        </div>
-                      </>
-                    );
-                  })}
-
-                <a>View Website</a>
-              </>
-            </Box>
-            <div>
-              <div>Social media icons</div>
-              <Box>Breadcrums</Box>
-            </div>
+          <Divider sx={{ borderBottomWidth: 3, borderBlockColor: "#cf2030" }} />
+          <Box>
+            <>
+              <div className={ContactDetail}>Email : {email}</div>
+              <div className={ContactDetail}>Phone : {phoneNumber}</div>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <Link
+                  href={websiteLink ? websiteLink : ""}
+                  style={{ color: "#cf2030" }}
+                >
+                  {websiteLink ? "View Website" : ""}
+                </Link>
+                <div>
+                  <InstagramIcon />
+                  <FacebookIcon />
+                  <LinkedInIcon />
+                </div>
+              </div>
+            </>
           </Box>
         </CardContent>
       </Card>
