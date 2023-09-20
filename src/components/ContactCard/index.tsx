@@ -7,6 +7,7 @@ import {
   CardContent,
   Divider,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -25,6 +26,7 @@ const ConatctCard = ({
   phoneNumber,
   websiteLink,
 }: any) => {
+  const isPhone = useMediaQuery("(max-width: 768px)");
   return (
     <>
       <Card
@@ -45,7 +47,7 @@ const ConatctCard = ({
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Avatar src={profilePicture?.url} className={Avtar} />
         </div>
-        <CardContent>
+        <CardContent sx={{padding:isPhone?'0px':'16px'}}>
           <Typography
             gutterBottom
             variant="h4"

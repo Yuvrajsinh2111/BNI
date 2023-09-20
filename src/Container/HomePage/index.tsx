@@ -1,22 +1,35 @@
 "use client";
 
+import { useState } from "react";
+import { Grid, Pagination, Stack } from "@mui/material";
 import ConatctCard from "@/components/ContactCard";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
-import { Grid } from "@mui/material";
-import { HeroComponent, MemberList } from "./style";
+import { MemberList, pagenation } from "./style";
 
 const HomePage = ({ data }: any) => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemPerPage=4
+
+  const startIndex=(currentPage-1)*itemPerPage
+
+
+  const endIndex=startIndex+itemPerPage;
+
+  const pageData=data.slice(startIndex,endIndex)
+
+  const handlePageChange = (event:any,page:number) => {
+    setCurrentPage(page);
+  };
   return (
     <>
       <Navbar />
-      <div className={HeroComponent}>
-        <HeroSection />
-      </div>
+      <HeroSection />
       <div className={MemberList}>
         <Grid container spacing={2}>
-          {data &&
-            data.map(
+          {pageData &&
+            pageData.map(
               ({
                 companyName,
                 email,
@@ -51,6 +64,9 @@ const HomePage = ({ data }: any) => {
             )}
         </Grid>
       </div>
+      <Stack spacing={2} className={pagenation}>
+        <Pagination count={Math.ceil(data.length / 4)} onChange={handlePageChange} showFirstButton showLastButton style={{display:'flex',justifyContent:"center"}}/>
+      </Stack>
     </>
   );
 };
