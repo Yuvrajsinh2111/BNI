@@ -1,12 +1,17 @@
+"use client";
+
 import HomePage from "@/Container/HomePage";
-import getAllMemberCard from "../Utils/contentful";
+import Navbar from "@/components/Navbar";
+import GlobalProvider from "@/context/Global";
 
 export default async function Home() {
-  const getMemberDetalis = await getAllMemberCard();
 
   return (
     <>
-      <HomePage data={getMemberDetalis} />
+      <GlobalProvider>
+          <Navbar />
+          <HomePage />
+      </GlobalProvider>
     </>
   );
 }

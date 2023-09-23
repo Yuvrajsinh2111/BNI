@@ -1,34 +1,28 @@
 "use client";
-
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Grid, Pagination, Stack } from "@mui/material";
+import { GlobalContext } from "@/context/Global";
 import ConatctCard from "@/components/ContactCard";
 import HeroSection from "@/components/HeroSection";
-import Navbar from "@/components/Navbar";
 import { MemberList, pagenation } from "./style";
 
-const HomePage = ({ data }: any) => {
+const HomePage = () => {
+  const { onBoardingModalData } = useContext(GlobalContext)
   const [currentPage, setCurrentPage] = useState(1);
-
-  const itemPerPage=4
-
-  const startIndex=(currentPage-1)*itemPerPage
-
-
-  const endIndex=startIndex+itemPerPage;
-
-  const pageData=data.slice(startIndex,endIndex)
-
-  const handlePageChange = (event:any,page:number) => {
+  const itemPerPage = 4;
+  const startIndex = (currentPage - 1) * itemPerPage
+  const endIndex = startIndex + itemPerPage;
+  const pageData = onBoardingModalData.length > 0 && onBoardingModalData?.slice(startIndex, endIndex)
+  const handlePageChange = (event: any, page: number) => {
     setCurrentPage(page);
   };
+
   return (
     <>
-      <Navbar />
       <HeroSection />
       <div className={MemberList}>
         <Grid container spacing={2}>
-          {pageData &&
+          {pageData && pageData?.length > 0 &&
             pageData.map(
               ({
                 companyName,
@@ -65,7 +59,7 @@ const HomePage = ({ data }: any) => {
         </Grid>
       </div>
       <Stack spacing={2} className={pagenation}>
-        <Pagination count={Math.ceil(data.length / 4)} onChange={handlePageChange} showFirstButton showLastButton style={{display:'flex',justifyContent:"center"}}/>
+        <Pagination count={Math.ceil(pageData?.length / 3)} onChange={handlePageChange} showFirstButton showLastButton style={{ display: 'flex', justifyContent: "center" }} />
       </Stack>
     </>
   );

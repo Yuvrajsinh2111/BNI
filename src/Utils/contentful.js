@@ -1,30 +1,36 @@
 import gql from "graphql-tag";
 import apolloClient from "./apollo-client";
 
+export async function getAllMemberCard(state) {
 
-export async function getAllMemberCard() {
   const { data } = await apolloClient.query({
     query: gql`
-      query GetAllPosts {
-      memberCardCollection{
-      items{
-      profilePicture{
-        url
+     {
+      memberCardCollection(where: {
+        OR: [
+          { memberName_contains: "${state}" },
+        ],
+      }) {
+        items {
+          profilePicture {
+            url
+          }
+          memberName
+          industry
+          companyName
+          email
+          phoneNumber
+          websiteLink
+          facebookLink
+          instagramLink
+          linkdInLink
+        }
       }
-      memberName
-      industry
-      companyName
-      email
-      phoneNumber
-      websiteLink
-      facebookLink
-      instagramLink
-      linkdInLink
     }
-  
-}
-      }
-    `,
+  `,
+    variables: {
+      state: state,
+    },
   });
   return data.memberCardCollection.items;
 }

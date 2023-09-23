@@ -1,10 +1,18 @@
 import { css } from "@emotion/css";
 
-export const navbar=css`
-display:flex; 
+export const navbar=(scroll:any)=>css`
+position:${scroll};
+display:flex;
 align-items:center; 
 background:black;
-padding:10px;
+padding:10px 0;
+width:100%;
+z-index:9;
+
+.navbar-wrapper{
+    width: 100%;
+    display:flex;
+}
 
 .container{
     display:flex;
@@ -38,6 +46,14 @@ padding:10px;
         color:white;
         border:1px solid white;
         border-right:none;
+
+        
+    }
+    input:focus{
+        border:2px white solid; 
+    }
+    input:hover{
+        border:2px white solid;   
     }
 
     input:focus{
@@ -52,18 +68,28 @@ padding:10px;
         border:1px white solid;
         border-left:none;
     }
+
+    .search-button{
+        borderRadius: px 5px 5px 0px;
+        border: 1px white solid;
+    }
 }
 
 .button-grid{
     display:flex;
-    justify-Content:center;
+    justify-content:center;
 
     .login-btn{
+        display:none;
         color:white;
     border:white 1px  solid;
     padding:8px 16px;
 
     }
+}
+
+.mobile-login-btn{
+    display:none;
 }
 
 @media (max-width: 768px) {
@@ -78,7 +104,5 @@ padding:10px;
     .logo{
         widht:100%;
     }
-
-    
 }
 `

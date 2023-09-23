@@ -7,10 +7,20 @@ background:black;
     margin:0 auto;
 }
 
+.image-container{
+    position:absolute;
+    top:55px;
+    left:20px;
+}
+
 .hero-image{
     width: 100%;
     height:100vh;
     position:relative;
+}
+
+.hero-imgae-mobile{
+    width:100%
 }
 
 .gallery-btn{

@@ -12,7 +12,7 @@ import {
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { Avtar, ContactDetail } from "./style";
+import { Avtar, ContactCard, ContactDetail } from "./style";
 
 const ConatctCard = ({
   companyName,
@@ -26,30 +26,18 @@ const ConatctCard = ({
   phoneNumber,
   websiteLink,
 }: any) => {
-  const isPhone = useMediaQuery("(max-width: 768px)");
   return (
     <>
       <Card
-        sx={{
-          maxWidth: 450,
-          marginTop: "20px",
-          borderRadius: "20px",
-          backgroundColor: "white",
-          color: "black",
-          boxShadow: 6,
-          margin: 2,
-          padding: 2,
-          maxHeight: 400,
-          minWidth: 200,
-          // border: "1px solid red",
-        }}
+        className={ContactCard}
       >
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="avatar-icon">
           <Avatar src={profilePicture?.url} className={Avtar} />
         </div>
-        <CardContent sx={{padding:isPhone?'0px':'16px'}}>
+        <CardContent className="card-container">
           <Typography
             gutterBottom
+            textAlign="center"
             variant="h4"
             display="flex"
             justifyContent="center"
@@ -73,12 +61,12 @@ const ConatctCard = ({
           >
             {industry}
           </Typography>
-          <Divider sx={{ borderBottomWidth: 3, borderBlockColor: "#cf2030" }} />
+          <Divider className="divider" />
           <Box>
             <>
               <div className={ContactDetail}>Email : {email}</div>
               <div className={ContactDetail}>Phone : {phoneNumber}</div>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div className="link-container">
                 <Link
                   href={websiteLink ? websiteLink : ""}
                   style={{ color: "#cf2030" }}

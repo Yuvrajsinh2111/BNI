@@ -22,14 +22,14 @@ const HeroSection = () => {
         <Grid item md={10} className="container">
           {isPhone?
           <Box position='relative'>
-            <Box position='absolute' top='55px' left='20px'>
+            <Box className="image-container">
             <Image src={Maximus} alt="maximus" />
             <Image src={Roaster} alt="roaster" />
             <Button className="gallery-btn" onClick={handleChange}>
               View Gallery
               </Button>
             </Box>
-            <Image src={HeroImageMobile} alt="hero-section" style={{width:'100%'}} />
+            <Image src={HeroImageMobile} alt="hero-section" className="hero-imgae-mobile" />
           </Box>
           :
           <Box>
