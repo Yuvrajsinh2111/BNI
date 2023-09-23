@@ -1,14 +1,45 @@
+
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
+import Image from "next/image";
+import { useRouter } from 'next/navigation'
+import { Box, Button, Grid, useMediaQuery } from "@mui/material";
+import HeroImage from "../../Utils/Images/banner.png";
+import HeroImageMobile from "../../Utils/Images/hero-mobile-img.png";
+import Maximus from "../../Utils/Images/maximus.png";
+import Roaster from "../../Utils/Images/e-roaster.png";
+import { heroSection } from "./style";
+ 
 
 const HeroSection = () => {
+  const isPhone = useMediaQuery('(max-width:600px)');
+  const router = useRouter();
+  const handleChange=()=>router.push('gallery')
+
   return (
-    <div>
-      <img
-        src="https://www.maximusroster.com/public/bni/banner.png"
-        alt="hero-section"
-      />
-    </div>
+    <>
+      <Grid container className={heroSection}>
+        <Grid item md={10} className="container">
+          {isPhone?
+          <Box position='relative'>
+            <Box className="image-container">
+            <Image src={Maximus} alt="maximus" />
+            <Image src={Roaster} alt="roaster" />
+            <Button className="gallery-btn" onClick={handleChange}>
+              View Gallery
+              </Button>
+            </Box>
+            <Image src={HeroImageMobile} alt="hero-section" className="hero-imgae-mobile" />
+          </Box>
+          :
+          <Box>
+          <Image src={HeroImage} alt="hero-section" className="hero-image" />
+          <Button className="gallery-btn" onClick={handleChange}> View Gallery </Button>
+          </Box>
+          }
+          </Grid>
+      </Grid>
+    </>
   );
 };
 

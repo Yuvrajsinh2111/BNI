@@ -1,9 +1,17 @@
-import HomePage from "@/Container/HomePage";
+"use client";
 
-export default function Home() {
+import HomePage from "@/Container/HomePage";
+import Navbar from "@/components/Navbar";
+import GlobalProvider from "@/context/Global";
+
+export default async function Home() {
+
   return (
     <>
-      <HomePage />
+      <GlobalProvider>
+          <Navbar />
+          <HomePage />
+      </GlobalProvider>
     </>
   );
 }
